@@ -58,7 +58,8 @@
         isShow: false,
         tabOffsetTop: 0,
         isTabFixed: false,
-        saveY: 0
+        saveY: 0,
+        itemImgListener: null
       }
     },
     created() {
@@ -77,13 +78,17 @@
       this.saveY = this.$refs.scroll.getScrollY()
       console.log(this.saveY)
 
+      this.$bus.$off('itemImgLoad', this.itemImgListener)
+
     },
     mounted() {
       //3.监听item中的图片加载
-      const refresh = debounce(this.$refs.scroll.refresh, 50)
-      this.$bus.$on('itemImgLoad',() => {
+      let refresh = debounce(this.$refs.scroll.refresh, 50)
+
+      this.itemImgListener = () => {
         refresh()
-      })
+      }
+      this.$bus.$on('itemImgLoad',this.itemImgListener)
 
     },
 
