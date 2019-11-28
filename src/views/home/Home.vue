@@ -22,16 +22,18 @@
   import HomeSwiper from "./homeChild/HomeSwiper";
   import HomeRecommendView from "./homeChild/HomeRecommendView";
   import HomeFeaturView from "./homeChild/HomeFeaturView";
+
+
   import GoodsList from "components/content/goods/GoodsList";
   import BackTop from "components/common/backTop/BackTop";
-
   import NavBar from "components/common/navbar/NavBar";
   import TabControl from "components/content/tabControl/TabControl";
+  import Scroll from "components/common/srcoll/Scroll";
 
   import {getHomeMultidata, getHomeGoods} from "network/home";
   import {debounce} from "common/utils";
+  import {itemListenerMixin} from "common/mixin";
 
-  import Scroll from "components/common/srcoll/Scroll";
 
   export default {
     name: "Home",
@@ -62,6 +64,8 @@
         itemImgListener: null
       }
     },
+    //混入的
+    mixins: [itemListenerMixin],
     created() {
       //1.请求多个数据
       this.getHomeMultidata()
@@ -82,14 +86,7 @@
 
     },
     mounted() {
-      //3.监听item中的图片加载
-      let refresh = debounce(this.$refs.scroll.refresh, 50)
-
-      this.itemImgListener = () => {
-        refresh()
-      }
-      this.$bus.$on('itemImgLoad',this.itemImgListener)
-
+      //混润中
     },
 
     methods: {

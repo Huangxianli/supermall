@@ -31,14 +31,14 @@
     },
     methods: {
       imgLoad() {
-        if (++this.counter === this.imageLength) {
+        if (++this.counter === this.imagesLength) {
           this.$emit('imageLoad')
         }
-      },
-      watch: {
-        detailInfo() {
-          this.imageLength = this.detailInfo.detailImage[0].list.length
-        }
+      }
+    },
+    watch: {
+      detailInfo() {
+        this.imagesLength = this.detailInfo.detailImage[0].list.length
       }
     }
 
