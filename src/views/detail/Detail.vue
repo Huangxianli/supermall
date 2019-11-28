@@ -10,7 +10,7 @@
       <DetailCommentInfo :comment-info="commentInfo" ref="comment"></DetailCommentInfo>
       <GoodsList :goods="recommends" ref="recomment"></GoodsList>
     </Scroll>
-    <DetailBottomBar></DetailBottomBar>
+    <DetailBottomBar @addCart="addCart"></DetailBottomBar>
   </div>
 </template>
 
@@ -128,6 +128,20 @@
             this.$refs.nav.currentIndex = this.currentIndex
           }
         }
+      },
+
+      //加入购物车
+      addCart() {
+        const product = {}
+        product.image = this.topImages[0]
+        product.title =this.goods.title
+        product.desc = this.goods.desc
+        product.price = this.goods.newPrice
+        product.iid = this.iid
+
+
+        // this.$store.cartList.push()
+        this.$store.dispatch('addCart', product)
       }
 
     },
