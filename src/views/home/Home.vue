@@ -51,11 +51,13 @@
       return {
         banners: [],
         recommends: [],
+
         goods: {
           'pop': {page: 0, list: []},
           'new': {page: 0, list: []},
           'sell': {page: 0, list: []}
         },
+
         currentType: 'pop',
         isShow: false,
         tabOffsetTop: 0,
@@ -86,7 +88,7 @@
 
     },
     mounted() {
-      //混润中
+      //混入中
     },
 
     methods: {
